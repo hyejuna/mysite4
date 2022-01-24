@@ -23,7 +23,7 @@ public class GuestBookDao {
 	
 	//등록
 	public int insert(GuestBookVo gbVo) {
-		System.out.println("mysite4/GuestbookDao.insert()");
+		System.out.println("[GuestBookDao.insert()]");
 
 		int count = sqlSession.insert("guestbook.insert", gbVo);
 
@@ -33,7 +33,7 @@ public class GuestBookDao {
 
 	//삭제
 	public int delete(GuestBookVo deleteVo) {
-		System.out.println("mysite4/GuestbookDao.delete()");
+		System.out.println("[GuestBookDao.delete()]");
 
 		int count = sqlSession.delete("guestbook.delete", deleteVo);
 
