@@ -5,7 +5,7 @@
 <mapper namespace="user">
 
 	<!-- 쿼리문작성 -->
-	<select id="getUser" parameterType="com.javaex.vo.UserVo" resultType = "com.javaex.vo.UserVo">
+	<select id="selectUser" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
 			select  no,
 			        name
@@ -15,5 +15,38 @@
 				
 		]]>
 	</select>
+
+	<insert id="insertUser" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			insert into users 
+			values (seq_users_no.nextval, 
+					#{id}, 
+					#{password}, 
+					#{name}, 
+					#{gender})		
+		]]>
+	</insert>
+
+	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select  no,
+        			id,
+        			password,
+        			name,
+        			gender
+			from users
+			where no = #{no}
+		]]>
+	</select>
+
+	<update id="update" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			update users
+			set password = #{password},
+    			name = #{name},
+    			gender = #{gender}
+			where no = #{no}
+		]]>
+	</update>
 
 </mapper>
