@@ -56,7 +56,11 @@
 							<div class="form-group">
 								<label class="form-text" for="input-pass">비밀번호</label> <input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
 							</div>
-
+							
+							<!-- 로그인 실패 -->
+							<c:if test = "${param.result == 'fail'}">
+								<p> 로그인 정보가 틀립니다. 다시 입력해 주세요.
+							</c:if>
 
 							<!-- 버튼영역 -->
 							<div class="button-area">

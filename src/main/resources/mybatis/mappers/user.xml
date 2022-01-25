@@ -31,7 +31,6 @@
 		<![CDATA[
 			select  no,
         			id,
-        			password,
         			name,
         			gender
 			from users
