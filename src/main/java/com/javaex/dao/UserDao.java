@@ -22,6 +22,15 @@ public class UserDao {
 			
 		}
 	
+	//유저 정보 가져오기(아이디 중복체크)
+	public UserVo selectUserById(UserVo userVo) {
+		System.out.println("[UserDao.selectUserById()]");
+		
+		UserVo checkUser = sqlSession.selectOne("user.selectUserById", userVo);
+		
+		return checkUser;
+	}
+	
 	public void insertUser(UserVo userVo) {
 		System.out.println("[UserDao.insertUser()]");
 		

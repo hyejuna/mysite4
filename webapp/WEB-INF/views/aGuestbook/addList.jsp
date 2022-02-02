@@ -124,7 +124,7 @@
 		console.log(guestbookVo);
 		
 		//요청
-$.ajax({
+		$.ajax({
 			
 			/* 요청 */
 			url : "${pageContext.request.contextPath }/api/guestbook/write", //요청 보낼 주소		

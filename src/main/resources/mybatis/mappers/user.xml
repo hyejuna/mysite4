@@ -15,6 +15,15 @@
 				
 		]]>
 	</select>
+	
+	<select id="selectUserById" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select  no,
+			        name
+			from users
+			where id = #{id}				
+		]]>
+	</select>
 
 	<insert id="insertUser" parameterType="com.javaex.vo.UserVo">
 		<![CDATA[

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -70,6 +71,23 @@ public class UserController {
 
 		return "user/joinForm";
 	}
+	
+	//아이디 중복체크
+	@ResponseBody
+	@RequestMapping("checkId")
+	public int checkId(@ModelAttribute UserVo userVo) {
+		System.out.println("[UserController.checkId()]");
+		//System.out.println(userVo);
+		
+		UserVo checkUser = userService.checkId(userVo);
+		
+		if(checkUser != null) {
+			return 1;
+		} else {
+			return 0;
+		}
+		
+	}
 
 	// 회원가입
 	@RequestMapping(value = "join", method = { RequestMethod.GET, RequestMethod.POST })
@@ -105,4 +123,5 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	
 }

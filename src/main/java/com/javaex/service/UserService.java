@@ -29,6 +29,14 @@ public class UserService {
 		
 	}
 	
+	/* 아이디 체크 */
+	public UserVo checkId(UserVo userVo) {
+		System.out.println("[UserService.checkId()]");
+		
+		return userDao.selectUserById(userVo);
+		
+	}
+	
 	public UserVo modifyForm(int no) {
 		System.out.println("[UserService.modifyForm()]");
 		
