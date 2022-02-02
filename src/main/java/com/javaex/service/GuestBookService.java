@@ -33,6 +33,21 @@ public class GuestBookService {
 		
 	}
 	
+	//등록 + 저장글 리턴
+	public GuestBookVo addGuestResultVo(GuestBookVo guestbookVo) {
+		System.out.println("[GuestBookService.addGuestResultVo()]");
+		//System.out.println(guestbookVo);
+		
+		//저장하기
+		gbDao.insertSelectKey(guestbookVo);
+		
+		//저장한 내용 가져오기
+		int no = guestbookVo.getNo();
+		GuestBookVo gVo = gbDao.selectGuest(no);
+		
+		return gVo;
+	}
+	
 	
 	//삭제
 	public void delete(GuestBookVo deleteVo) {

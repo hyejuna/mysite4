@@ -15,20 +15,44 @@
 			order by reg_date desc
 		]]>
 	</select>
-	
+
 	<insert id="insert" parameterType="com.javaex.vo.GuestBookVo">
 		<![CDATA[
 			insert into guestbook
 			values(seq_guestbook_no.nextval, #{name}, #{password}, #{content}, sysdate)
 		]]>
-	</insert>	
+	</insert>
+
+	<!-- 방명록 글 저장 selectKey -->
+	<insert id="insertSelectKey" parameterType="com.javaex.vo.GuestBookVo">
+		<!-- 시퀀스로 만든 번호를 먼저 받고, Vo에 넣어주기. -->
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_guestbook_no.nextval from dual <!-- dual은 가상의 테이블 -->
+		</selectKey>
+		
+		<![CDATA[
+			insert into guestbook
+			values(#{no}, #{name}, #{password}, #{content}, sysdate)
+		]]>
+	</insert>
 	
+	<!-- 저장한 1개 정보 가져오기 -->
+	<select id="selectByNo" parameterType="int" resultType="com.javaex.vo.GuestBookVo">
+		<![CDATA[
+			select no, name, password, content, reg_date regDate
+			from guestbook
+			where no = #{no}
+		]]>
+	
+	</select>
+
+
 	<delete id="delete" parameterType="com.javaex.vo.GuestBookVo">
 		<![CDATA[
 			delete from guestbook
 			where no = #{no}
 			and password = #{password}
-		]]>	
+		]]>
 	</delete>
 
 </mapper>

@@ -23,6 +23,7 @@
 				<h2>방명록</h2>
 				<ul>
 					<li>일반방명록</li>
+					<li>ajax방명록</li>
 				
 				</ul>
 			</div>
@@ -86,7 +87,7 @@
 								<td><a href="${pageContext.request.contextPath}/guestbook/deleteForm?no=${gbVo.no}">[삭제]</a></td>
 							</tr>
 							<tr>
-								<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
+								<td colspan=4 class="text-left">${gbVo.content}</td>
 							</tr>
 						</table>
 						<!-- //guestRead -->
