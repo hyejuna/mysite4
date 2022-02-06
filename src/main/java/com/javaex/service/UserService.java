@@ -30,11 +30,14 @@ public class UserService {
 	}
 	
 	/* 아이디 체크 */
-	public UserVo checkId(UserVo userVo) {
+	public String checkId(UserVo userVo) {
 		System.out.println("[UserService.checkId()]");
 		
-		return userDao.selectUserById(userVo);
-		
+		if(userDao.selectUserById(userVo) == null) {
+			return "success";
+		} else {
+			return "fail";
+		}		
 	}
 	
 	public UserVo modifyForm(int no) {

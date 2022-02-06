@@ -75,17 +75,13 @@ public class UserController {
 	//아이디 중복체크
 	@ResponseBody
 	@RequestMapping("checkId")
-	public int checkId(@ModelAttribute UserVo userVo) {
+	public String checkId(@ModelAttribute UserVo userVo) {
 		System.out.println("[UserController.checkId()]");
 		//System.out.println(userVo);
 		
-		UserVo checkUser = userService.checkId(userVo);
+		return userService.checkId(userVo);
 		
-		if(checkUser != null) {
-			return 1;
-		} else {
-			return 0;
-		}
+		
 		
 	}
 

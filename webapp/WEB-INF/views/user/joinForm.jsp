@@ -132,9 +132,9 @@
 			
 			/* 응답 */
 			dataType : "json",
-			success : function(checkUser){ 
+			success : function(result){ 
 				/*성공시 처리해야될 코드 작성*/
-				if(checkUser == 1) {
+				if(result == 'fail') {
 					$("#checkIdResult").html("<p>이미 있는 아이디입니다. 아이디를 다시 입력해주세요</p>")
 				} else {
 					$("#checkIdResult").html("<p>사용가능한 아이디입니다.</p>")
