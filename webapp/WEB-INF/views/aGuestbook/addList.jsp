@@ -66,7 +66,7 @@
 							</tr>
 							<tr class="button-area">
 								<td colspan="4" class="text-center">
-									<button id="btnSubmit" type="submit">등록</button>
+									<button id="btnSubmit2" type="submit">등록</button>
 								</td>
 							</tr>
 						</tbody>
@@ -137,7 +137,7 @@
 		console.log("로딩전 리스트 요청");
 	});
 
-	//저장버튼 클릭될 때
+	//저장버튼 클릭될 때 - 파라미터 방식 요청
 	$("#btnSubmit").on("click", function() {
 		console.log("클릭");
 
@@ -181,7 +181,54 @@
 		});
 
 	});
+	
+	//저장버튼 클릭될 때 - JSON 방식 요청
+	$("#btnSubmit2").on("click", function() {
+		console.log("json 전송클릭");
+		
+		//입력되는 데이터 모으기.
+		var name = $("#input-uname").val();
+		var password = $("#input-pass").val();
+		var content = $("[name='content']").val();
 
+		var guestbookVo = { //객체 안에 원래 한줄로 쓰는거라서 , 씀!!!!!
+			name : name,
+			password : password,
+			content : content
+		};
+
+		console.log(guestbookVo);
+		
+		//요청
+		$.ajax({
+
+			/* 요청 */
+			url : "${pageContext.request.contextPath }/api/guestbook/write2", //요청 보낼 주소		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(guestbookVo), //자바스크립트 객체를 json 형식으로 변경
+
+			/* 응답 */
+			dataType : "json",
+			success : function(guestbookVo) {
+				/*성공시 처리해야될 코드 작성*/
+				console.log(guestbookVo);
+				render(guestbookVo, "up");
+				//입력화면 초기화
+				$("#input-uname").val("");
+				$("#input-pass").val("");
+				$("[name='content']").val("");
+				
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+		
+	});
+	
 	//삭제버튼 클릭할 때
 	$("#listArea").on("click", ".btnDelPop", function() { //새로 생기는 애들이라 부모에게 이벤트 부여->위임
 		//데이터수집

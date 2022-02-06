@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,6 +41,18 @@ public class ApiGuestbookController {
 	@RequestMapping("/write")
 	public GuestBookVo write(@ModelAttribute GuestBookVo guestbookVo) {
 		System.out.println("[ApiGuestbookController.write()]");
+		System.out.println(guestbookVo);
+		
+		//저장하고, 저장된 값 리턴
+		GuestBookVo gVo = guestbookService.addGuestResultVo(guestbookVo);
+		System.out.println(gVo);
+		return gVo;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/write2")
+	public GuestBookVo write2(@RequestBody GuestBookVo guestbookVo) {
+		System.out.println("[ApiGuestbookController.write2()]");
 		System.out.println(guestbookVo);
 		
 		//저장하고, 저장된 값 리턴

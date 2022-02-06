@@ -64,10 +64,10 @@
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
+								<input type="password" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
 							</div>
 
-							<!-- 이메일 -->
+							<!-- 이름 -->
 							<div class="form-group">
 								<label class="form-text" for="input-name">이름</label> 
 								<input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
@@ -145,9 +145,30 @@
 				console.error(status + " : " + error);
 			}
 		});
-			
+	});
+	
+	/* 회원가입 폼 빈칸 있을 경우 전송 안함 */
+	$("#btn-submit").on("click", function(){
+		console.log("회원가입버튼 클릭")
+		
+		var id = $("#input-uid").val();
+		var pw = $("#input-pass").val();
+		var name = $("#input-name").val(); 
+		if(id==""){
+			alert("아이디를 입력해 주세요");
+			return false; // 원래 하던일(submit) 멈춤.
+		}
+		if(pw==""){
+			alert("비밀번호를 입력해 주세요");
+			return false;
+		}
+		if(name==""){
+			alert("이름을 입력해 주세요");
+			return false;
+		}
 		
 		
+		return true;
 		
 	});
 </script>
